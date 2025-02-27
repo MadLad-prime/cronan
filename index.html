@@ -3,40 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cloudinary Upload</title>
-    <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+    <title>Good Isaac Home Concepts</title>
+    <link rel="stylesheet" href="styles_v6.css">
 </head>
 <body>
-    <button onclick="openUploadWidget()">Upload Image</button>
+    <h1>Good Isaac Home Concepts</h1>
+    <div id="uploaded-image-container">
+        <img id="uploaded-image" src="" alt="Uploaded Image">
+    </div>
 
     <script>
-        function openUploadWidget() {
-            const cloudName = "dujlwpbrv";  // Replace with your Cloudinary cloud name
-            const uploadPreset = "isaac092";  // Replace with your upload preset
-
-            const myWidget = cloudinary.createUploadWidget(
-                {
-                    cloudName: cloudName,
-                    uploadPreset: uploadPreset,
-                    sources: ["local", "url"],
-                    multiple: false,
-                    cropping: false,
-                    resourceType: "image",
-                    maxFileSize: 5000000,
-                },
-                (error, result) => {
-                    if (!error && result && result.event === "success") {
-                        const imageUrl = result.info.secure_url;
-                        console.log("Image URL:", imageUrl);
-                        alert("Image uploaded successfully!");
-                    } else if (error) {
-                        console.error("Upload error:", error);
-                        alert("Upload failed. Please try again.");
-                    }
-                }
-            );
-
-            myWidget.open();
+        // Load the uploaded image from localStorage
+        const imageUrl = localStorage.getItem("uploadedImage");
+        if (imageUrl) {
+            document.getElementById("uploaded-image").src = imageUrl;
+        } else {
+            console.log("No image uploaded yet.");
         }
     </script>
 </body>
